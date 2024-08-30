@@ -8,4 +8,4 @@
 sh ./make.sh ./demo/foo.cpp
 ```
 
-The `a.out` file is in the same dir of foo.cpp.
+The `a.out` file is in the directory of working dir.
