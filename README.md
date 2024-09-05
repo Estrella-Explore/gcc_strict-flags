@@ -8,4 +8,4 @@
 sh ./make.sh ./demo/foo.cpp
 ```
 
-The `a.out` file is in the directory of working dir.
+The executable file `foo.out` is in the same directory as your code file.
