@@ -1,6 +1,6 @@
 # Description
 
-> To enable the **STRICTEST compiler flags** for OIers (single file compile script).
+> This is a single file compile script which enables the **STRICTEST compiler flags** for OIers.
 
 # How to use
 
@@ -8,4 +8,4 @@
 sh ./make.sh ./demo/foo.cpp
 ```
 
-The executable file `foo.out` is in the same directory as your code file.
+The executable programme `foo.out` is in the same directory as your source code file.
