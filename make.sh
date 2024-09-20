@@ -20,8 +20,8 @@ tryUsingDefaultTestcase() {
         echo "------> Using this testcase? [Y/n]"
         read -r operation
 
-        if [[ "$operation" != [Nn]* ]]; then                 # If `$operation` is not "N" or "n", include empty.
-            ${filename}.out <${filename}.in >${filename}.ans # Run program.
+        if [[ "$operation" != [Nn]* ]]; then                   # If `$operation` is not "N" or "n", include empty.
+            ./${filename}.out <${filename}.in >${filename}.ans # Run program.
 
             echo "[Info]: Reading ${filename}.in as testcase"
             echo -e "[Info]: Your answer is below, which will be saved as ${filename}.ans\n"
