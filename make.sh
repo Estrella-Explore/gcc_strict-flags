@@ -16,15 +16,18 @@ g++ -g -Wall -Wextra -pedantic --std=c++14 -O2 -Wshadow -Wformat=2 -Wfloat-equal
 tryUsingDefaultTestcase() {
     if test -r ${filename}.in; then # Test if `${filename}.in` exists and readable.
         echo ""
-        echo "[Info]: Testcase ${1%.cpp}.in was detected."
+        echo "[Info]: Testcase ${filename}.in was detected."
         echo "------> Using this testcase? [Y/n]"
         read -r operation
 
         if [[ "$operation" != [Nn]* ]]; then                 # If `$operation` is not "N" or "n", include empty.
             ${filename}.out <${filename}.in >${filename}.ans # Run program.
 
-            echo "[Info]: Using ${filename}.out as testcase"
-            echo "[Info]: Your answer is ${filename}.ans"
+            echo "[Info]: Reading ${filename}.in as testcase"
+            echo -e "[Info]: Your answer is below, which will be saved as ${filename}.ans\n"
+
+            cat ${filename}.ans
+
             echo -e "\n[Hint]: You can try \"diff ${filename}.ans <Standard Answer>\" to debug"
         fi
     fi
