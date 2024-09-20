@@ -25,5 +25,5 @@ The executable programme `foo.out` is in the same directory as your source code 
    Just keep it **_empty_** and press `Enter` to use default choice.
 
 3. `sh make.sh foo.cpp` is too loooooong? \
-   Rename `make.sh` as your favourite name `fkccf.sh`, and copy it to `/usr/bin/`
+   Rename `make.sh` as your favourite name `fkccf.sh`, and copy it to `/usr/bin/`. \
    Once you restart your terminal, you can enjoy `fkccf foo.cpp` in any directory you want!
