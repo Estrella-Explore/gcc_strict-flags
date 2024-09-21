@@ -9,9 +9,9 @@ filename=${1%.cpp}
 # E.g.: Your file name is `foo.cpp`, then your executable file name is `foo.out`.
 g++ -g -Wall -Wextra -pedantic --std=c++14 -O2 -Wshadow -Wformat=2 -Wfloat-equal -Wconversion -Wlogical-op -Wshift-overflow=2 -Wduplicated-cond -Wcast-qual -Wcast-align -D_GLIBCXX_DEBUG -D_GLIBCXX_DEBUG_PEDANTIC -fdiagnostics-color=always $1 -o ${filename}.out
 
-# @brief: read default test as `stdin`, redirect `stdout` to `${filename}.out` .
-# If found `${filename}.in`, ask user if they want to use `${filename}.out` \
-# as testcase.
+# @brief: read default test as `stdin`, redirect `stdout` to `${filename}.ans` .
+# If found `${filename}.in`, \
+# ask user if they want to use `${filename}.in` as testcase. \
 # Output was been redirected to `${filename}.ans`
 tryUsingDefaultTestcase() {
     if test -r ${filename}.in; then # Test if `${filename}.in` exists and readable.
@@ -20,7 +20,7 @@ tryUsingDefaultTestcase() {
         echo "------> Using this testcase? [Y/n]"
         read -r operation
 
-        if [[ "$operation" != [Nn]* ]]; then                   # If `$operation` is not "N" or "n", include empty.
+        if [[ "$operation" != [Nn]* ]]; then                   # If `$operation` is not "N" or "n", include empty input.
             ./${filename}.out <${filename}.in >${filename}.ans # Run program.
 
             echo "[Info]: Reading ${filename}.in as testcase"
