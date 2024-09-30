@@ -8,13 +8,13 @@
 sh make.sh demo/foo.cpp
 ```
 
-The executable programme `foo.out` is in the same directory as your source code file.
+The executable program `foo.out` is in the same directory as your source code file.
 
 # News
 
 - User-friendly prompts.
 
-- If test case `foo.in` was found, you can pass it as `stdin` to your programme.\
+- If test case `foo.in` was found, you can pass it as `stdin` to your program.\
   Your answer will be output, and be saved as `foo.ans` by default.
 
 # Tips

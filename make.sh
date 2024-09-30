@@ -23,12 +23,12 @@ tryUsingDefaultTestcase() {
         if [[ "$operation" != [Nn]* ]]; then                   # If `$operation` is not "N" or "n", include empty input.
             ./${filename}.out <${filename}.in >${filename}.ans # Run program.
 
-            echo "[Info]: Reading ${filename}.in as testcase"
-            echo -e "[Info]: Your answer is below, which will be saved as ${filename}.ans\n"
+            echo "[Info]: Reading ${filename}.in as testcase."
+            echo -e "[Info]: Your answer is below, which will be saved as ${filename}.ans.\n"
 
             cat ${filename}.ans
 
-            echo -e "\n[Hint]: You can try \"diff ${filename}.ans <Standard Answer>\" to debug"
+            echo -e "\n[Hint]: You can try \"diff ${filename}.ans <Standard Answer>\" to debug."
         fi
     fi
 }
@@ -38,8 +38,8 @@ tryUsingDefaultTestcase() {
 # if [[ $? == 0 ]]; then
 # HINT: Sometimes `g++` will return 0 even if got trouble.
 if test -x ${filename}.out; then # If `${filename}.out` exists and can be executed.
-    echo "[Info]: Successfully compiled $1"
-    echo "[Info]: Executable file is ${filename}.out"
+    echo "[Info]: Successfully compiled $1."
+    echo "[Info]: Executable file is ${filename}.out."
     tryUsingDefaultTestcase
 else
     # TODO: Output the above compile informations to `${filename}.log`
