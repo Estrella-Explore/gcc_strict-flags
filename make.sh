@@ -1,7 +1,17 @@
 #!/bin/bash
 
-filename=${1%.cpp}
 # `${1%.cpp}` catches the whole file name(include path), delete the suffix `.cpp`
+filename=${1%.cpp}
+
+# Remove the old `${filename}.out` if it exists.
+if test -f ${filename}.out;then
+    rm ${filename}.out
+fi
+
+# Remove the old `${filename}.ans` if it exists.
+if test -f ${filename}.ans;then
+    rm ${filename}.ans
+fi
 
 # @brief: Compile `${filename}.cpp`
 # --std=c++14 is the require of CCF - China Cheating-money Foundation
@@ -33,16 +43,30 @@ tryUsingDefaultTestcase() {
     fi
 }
 
+# @brief: Receive a string as parameter, output it in blue.
+# `\033[34m` sets the color to blue, \
+# `\033[0m` clear all the colors
+blueOutput () {
+    echo -e "\033[34m${1}\033[0m"
+}
+
+# @brief: Receive a string as parameter, output it in red.
+# `\033[31m` sets the color to red, \
+# `\033[0m` clear all the colors
+redOutput () {
+    echo -e "\033[31m${1}\033[0m"
+}
+
 # ---------- Functions definitions finished ----------
 
 # if [[ $? == 0 ]]; then
 # HINT: Sometimes `g++` will return 0 even if got trouble.
 if test -x ${filename}.out; then # If `${filename}.out` exists and can be executed.
-    echo "[Info]: Successfully compiled $1"
-    echo "[Info]: Executable file is ${filename}.out"
+    blueOutput "[Info]:\033[0m Successfully compiled $1"
+    blueOutput "[Info]:\033[0m Executable file is ${filename}.out"
     tryUsingDefaultTestcase
 else
     # TODO: Output the above compile informations to `${filename}.log`
-    echo "[Error]: Got trouble in compiling..."
-    echo "[Info]: Exiting..."
+    redOutput "[Error]: Got trouble in compiling..."
+    blueOutput "[Info]:\033[0m Exiting..."
 fi
