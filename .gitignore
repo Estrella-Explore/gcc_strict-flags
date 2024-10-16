@@ -2,3 +2,5 @@
 *.out
 *.exe
 *.log
+
+release/
