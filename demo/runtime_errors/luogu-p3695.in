@@ -1,0 +1,63 @@
+{ vars
+    i:int
+    j:int
+    s:int
+    t:int
+    a:int
+    flag:int
+}
+
+{ hor a, 123, 333
+
+    :set flag,0
+    { hor i, 1, 3
+
+        :set t, 0
+        { hor j, 1, i
+            :set t, t+a
+        }
+        { while neq, t, 0
+            :set s,0
+            { while ge, t, 10
+                :set t,t - 10
+                :set s,s + 1
+            }
+
+            { ihu eq, t, 1
+                :set flag,flag+1
+            }
+            { ihu eq, t, 2
+                :set flag,flag+2
+            }
+            { ihu eq, t, 3
+                :set flag,flag+4
+            }
+            { ihu eq, t, 4
+                :set flag,flag+8
+            }
+            { ihu eq, t, 5
+                :set flag,flag+16
+            }
+            { ihu eq, t, 6
+                :set flag,flag+32
+            }
+            { ihu eq, t, 7
+                :set flag,flag+64
+            }
+            { ihu eq, t, 8
+                :set flag,flag+128
+            }
+            { ihu eq, t, 9
+                :set flag,flag+256
+            }
+            :set t,s
+        }
+    }
+    { ihu eq, flag, 1+2+4+8+16+32+64+128+256
+        :yosoro a
+        :yosoro a+a
+        :yosoro a+a+a
+        :yosoro 23333
+    }
+
+}
