@@ -3,22 +3,6 @@
 # `${1%.cpp}` catches the whole file name(include path), delete the suffix `.cpp`
 filename=${1%.cpp}
 
-# Remove the old `${filename}.out` if it exists.
-if test -f ${filename}.out;then
-    rm ${filename}.out
-fi
-
-# Remove the old `${filename}.ans` if it exists.
-if test -f ${filename}.ans;then
-    rm ${filename}.ans
-fi
-
-# @brief: Compile `${filename}.cpp`
-# --std=c++14 is the require of CCF - China Cheating-money Foundation
-# c++14 for CSP-J/S, NOIp and NOI, etc.
-# E.g.: Your file name is `foo.cpp`, then your executable file name is `foo.out`.
-g++ -g -Wall -Wextra -pedantic --std=c++14 -O2 -Wshadow -Wformat=2 -Wfloat-equal -Wconversion -Wlogical-op -Wshift-overflow=2 -Wduplicated-cond -Wcast-qual -Wcast-align -D_GLIBCXX_DEBUG -D_GLIBCXX_DEBUG_PEDANTIC -fdiagnostics-color=always $1 -o ${filename}.out
-
 # @brief: Receive a string as parameter, output it in blue.
 # `\033[34m` sets the color to blue, \
 # `\033[0m` clear all the colors
@@ -58,6 +42,28 @@ tryUsingDefaultTestcase() {
 }
 
 # ---------- Functions definitions finished ----------
+
+# Remove the old `${filename}.out` if it exists.
+if test -f ${filename}.out;then
+    rm ${filename}.out
+fi
+
+# Remove the old `${filename}.ans` if it exists.
+if test -f ${filename}.ans;then
+    rm ${filename}.ans
+fi
+
+# @brief: Compile `${filename}.cpp`
+# --std=c++14 is the require of CCF - China Cheating-money Foundation
+# c++14 for CSP-J/S, NOIp and NOI, etc.
+# E.g.: Your file name is `foo.cpp`, then your executable file name is `foo.out`.
+g++ -g -Wall -Wextra -pedantic --std=c++14 -Og \
+    -Wshadow -Wformat=2 -Wfloat-equal -Wconversion -Wlogical-op -Wshift-overflow=2 \
+    -Wduplicated-cond -Wcast-qual -Wcast-align -Wnoexcept -Winline -Wdouble-promotion \
+    -fsanitize=undefined -fsanitize=address -fanalyzer \
+    -D_GLIBCXX_DEBUG -D_GLIBCXX_DEBUG_PEDANTIC \
+    -fdiagnostics-color=always \
+    $1 -o ${filename}.out
 
 # if [[ $? == 0 ]]; then
 # HINT: Sometimes `g++` will return 0 even if got trouble.
