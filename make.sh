@@ -11,14 +11,14 @@ RESET="\033[0m"
 # @brief: Outputs the provided string in blue.
 # `\033[34m` sets the color to blue.
 # `\033[0m` resets the text color to default.
-blueOutput () {
+blueOutput() {
     echo -e "${BLUE}${1}${RESET}"
 }
 
 # @brief: Outputs the provided string in red.
 # `\033[31m` sets the color to red.
 # `\033[0m` resets the text color to default.
-redOutput () {
+redOutput() {
     echo -e "${RED}${1}${RESET}"
 }
 
@@ -105,7 +105,7 @@ if [[ -x "${filename}.out" ]]; then
     tryUsingDefaultTestcase
 else
     redOutput "[Error]: Compilation failed.\a"
-    blueOutput "[Info]:${RESET} Check '${filename}.log' for details."
+    blueOutput "[Info]:${RESET} Check "${filename}.log" for details."
 fi
 
 cleanupEmptyFiles
