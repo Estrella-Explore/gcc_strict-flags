@@ -1,78 +1,113 @@
 #!/bin/bash
 
-# `${1%.cpp}` catches the whole file name(include path), delete the suffix `.cpp`
-filename=${1%.cpp}
+# `${1%.cpp}` extracts the file name (including path) by removing the `.cpp` suffix.
+filename="${1%.cpp}"
 
-# @brief: Receive a string as parameter, output it in blue.
-# `\033[34m` sets the color to blue, \
-# `\033[0m` clear all the colors
+# Definitions for colors
+BLUE="\033[34m"
+RED="\033[31m"
+RESET="\033[0m"
+
+# @brief: Outputs the provided string in blue.
+# `\033[34m` sets the color to blue.
+# `\033[0m` resets the text color to default.
 blueOutput () {
-    echo -e "\033[34m${1}\033[0m"
+    echo -e "${BLUE}${1}${RESET}"
 }
 
-# @brief: Receive a string as parameter, output it in red.
-# `\033[31m` sets the color to red, \
-# `\033[0m` clear all the colors
+# @brief: Outputs the provided string in red.
+# `\033[31m` sets the color to red.
+# `\033[0m` resets the text color to default.
 redOutput () {
-    echo -e "\033[31m${1}\033[0m"
+    echo -e "${RED}${1}${RESET}"
 }
 
-# @brief: read default test as `stdin`, redirect `stdout` to `${filename}.ans` .
-# If found `${filename}.in`, \
-# ask user if they want to use `${filename}.in` as testcase. \
-# Output was been redirected to `${filename}.ans`
+# @brief: Reads the default test case as `stdin` and redirects `stdout` to `${filename}.ans`.
+# If `${filename}.in` exists, prompts the user to use it as the test case.
+# The program output is saved to `${filename}.ans`.
 tryUsingDefaultTestcase() {
-    if test -r ${filename}.in; then # Test if `${filename}.in` exists and readable.
+    if [[ -r ${filename}.in ]]; then # Checks if `${filename}.in` exists and is readable.
         echo ""
-        blueOutput "[Info]:\033[0m Testcase ${filename}.in was detected."
-        echo "------> Using this testcase? [Y/n]"
+        blueOutput "[Info]:${RESET} Test case ${filename}.in detected."
+        echo "------> Use this test case as stdin? [Y/n]"
         read -r operation
 
-        if [[ "$operation" != [Nn]* ]]; then                   # If `$operation` is not "N" or "n", include empty input.
-            ./${filename}.out <${filename}.in >${filename}.ans # Run program.
+        if [[ "$operation" != [Nn]* ]]; then # Proceed if the user input is not "N" or "n".
+            blueOutput "[Info]:${RESET} Using ${filename}.in as the test case."
 
-            blueOutput "[Info]:\033[0m Reading ${filename}.in as testcase."
-            blueOutput "[Info]:\033[0m Your answer is below, which will be saved as ${filename}.ans.\n"
+            ./${filename}.out < "${filename}.in" > "${filename}.ans" # Executes the program with input redirection.
 
-            cat ${filename}.ans
+            blueOutput "[Info]:${RESET} Output is shown below and saved as ${filename}.ans.\n"
 
-            blueOutput "\n[Hint]:\033[0m You can try \"diff ${filename}.ans <Standard Answer>\" to debug."
+            cat "${filename}.ans"
+
+            blueOutput "\n[Hint]:${RESET} You can use \"diff ${filename}.ans <Standard Answer>\" to compare with the expected output."
         fi
     fi
 }
 
-# ---------- Functions definitions finished ----------
+# @brief: Removes old files if they exist.
+# Deletes `${filename}.out`, `${filename}.ans`, and `${filename}.log`.
+initCleanup() {
+    # Remove the old `${filename}.out` if it exists.
+    if [[ -f "${filename}.out" ]]; then
+        rm "${filename}.out"
+    fi
 
-# Remove the old `${filename}.out` if it exists.
-if test -f ${filename}.out;then
-    rm ${filename}.out
-fi
+    # Remove the old `${filename}.ans` if it exists.
+    if [[ -f "${filename}.ans" ]]; then
+        rm "${filename}.ans"
+    fi
 
-# Remove the old `${filename}.ans` if it exists.
-if test -f ${filename}.ans;then
-    rm ${filename}.ans
-fi
+    # Remove the old `${filename}.log` if it exists.
+    if [[ -f "${filename}.log" ]]; then
+        rm "${filename}.log"
+    fi
+}
 
-# @brief: Compile `${filename}.cpp`
+# @brief: Removes empty files if they exist.
+# Specifically checks `${filename}.ans` and `${filename}.log`.
+cleanupEmptyFiles() {
+    # Check if the `.ans` file exists and is empty.
+    if [[ -f "${filename}.ans" && ! -s "${filename}.ans" ]]; then
+        rm "${filename}.ans"
+    fi
+
+    # Check if the `.log` file exists and is empty.
+    if [[ -f "${filename}.log" && ! -s "${filename}.log" ]]; then
+        rm "${filename}.log"
+    fi
+}
+
+# ---------- Function definitions complete ----------
+
+initCleanup
+
+# @brief: Compiles `${filename}.cpp` using `g++` with detailed warnings and debugging flags.
 # --std=c++14 is the require of CCF - China Cheating-money Foundation
 # c++14 for CSP-J/S, NOIp and NOI, etc.
-# E.g.: Your file name is `foo.cpp`, then your executable file name is `foo.out`.
+# Outputs compilation details to the terminal and logs plain text to `${filename}.log`.
+# If successful, the output executable is named `${filename}.out`.
 g++ -g -Wall -Wextra -pedantic --std=c++14 -Og \
     -Wshadow -Wformat=2 -Wfloat-equal -Wconversion -Wlogical-op -Wshift-overflow=2 \
     -Wduplicated-cond -Wcast-qual -Wcast-align -Wnoexcept -Winline -Wdouble-promotion \
     -fsanitize=undefined -fsanitize=address -fanalyzer \
     -D_GLIBCXX_DEBUG -D_GLIBCXX_DEBUG_PEDANTIC \
     -fdiagnostics-color=always \
-    $1 -o ${filename}.out
+    "$1" -o "${filename}.out" 2>&1 \
+    | tee /dev/tty \
+    | sed "s/\x1B\[[0-9;]*[a-zA-Z]//g" > "${filename}.log"
 
-# if [[ $? == 0 ]]; then
-# HINT: Sometimes `g++` will return 0 even if got trouble.
-if test -x ${filename}.out; then # If `${filename}.out` exists and can be executed.
-    blueOutput "[Info]:\033[0m Successfully compiled $1"
-    blueOutput "[Info]:\033[0m Executable file is ${filename}.out"
+# Check if the output file was successfully created and is executable.
+if [[ -x "${filename}.out" ]]; then 
+    blueOutput "[Info]:${RESET} Compilation of $1 succeeded."
+    blueOutput "[Info]:${RESET} Executable file: ${filename}.out"
     tryUsingDefaultTestcase
 else
-    # TODO: Output the above compile informations to `${filename}.log`
-    redOutput "[Error]: Got trouble in compiling...\a"
-    blueOutput "[Info]:\033[0m Exiting..."
+    redOutput "[Error]: Compilation failed.\a"
+    blueOutput "[Info]:${RESET} Check '${filename}.log' for details."
 fi
+
+cleanupEmptyFiles
+
+exit
