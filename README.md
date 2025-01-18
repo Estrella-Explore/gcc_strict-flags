@@ -2,7 +2,7 @@
 
 > This is a single file compile script which enables the **STRICTEST compiler flags** for competitive programming.
 
-<div style="text-align:center;">
+<div style="text-align: center;">
   <a href="README_zh-CN.md" 
      style="
        display: inline-block;
@@ -16,11 +16,17 @@
        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
        transition: background-color 0.3s, transform 0.2s;
      "
-     onmouseover="this.style.backgroundColor='#b3243e'; this.style.transform='scale(1.05)';"
-     onmouseout="this.style.backgroundColor='#d3445e'; this.style.transform='scale(1)';">
+     class="custom-button">
     简体中文
   </a>
 </div>
+<style>
+  .custom-button:hover {
+    background-color: #b3243e;
+    transform: scale(1.05);
+  }
+</style>
+
 
 ---
 
@@ -39,7 +45,7 @@
     
     You could also download the latest version via `curl`:
     ```bash
-    curl https://raw.githubusercontent.com/Estrella-Explore/gcc_strict-flags/refs/heads/main/make.sh
+    curl -O https://raw.githubusercontent.com/Estrella-Explore/gcc_strict-flags/main/make.sh
     ```
 
 2. **Installation**

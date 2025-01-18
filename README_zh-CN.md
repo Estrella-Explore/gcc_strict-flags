@@ -2,7 +2,7 @@
 
 > 这是一个适用于竞争性编程（如：OI、ACM）领域启用 **最严格的编译参数** 的单文件编译脚本。
 
-<div style="text-align:center;">
+<div style="text-align: center;">
   <a href="README.md" 
      style="
        display: inline-block;
@@ -16,11 +16,16 @@
        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
        transition: background-color 0.3s, transform 0.2s;
      "
-     onmouseover="this.style.backgroundColor='#008BFF'; this.style.transform='scale(1.05)';"
-     onmouseout="this.style.backgroundColor='#007BFF'; this.style.transform='scale(1)';">
+     class="custom-button">
     English
   </a>
 </div>
+<style>
+  .custom-button:hover {
+    background-color: #008BFF;
+    transform: scale(1.05);
+  }
+</style>
 
 ---
 
@@ -39,7 +44,7 @@
     
     你也可以用 `curl` 直接下载最新版的文件：
     ```bash
-    curl https://raw.githubusercontent.com/Estrella-Explore/gcc_strict-flags/refs/heads/main/make.sh
+    curl -O https://raw.githubusercontent.com/Estrella-Explore/gcc_strict-flags/main/make.sh
     ```
 
 2. **安装方法**
