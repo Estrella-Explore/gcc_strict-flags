@@ -19,13 +19,13 @@
      class="custom-button">
     简体中文
   </a>
+  <style>
+    .custom-button:hover {
+      background-color: #b3243e;
+      transform: scale(1.05);
+    }
+  </style>
 </div>
-<style>
-  .custom-button:hover {
-    background-color: #b3243e;
-    transform: scale(1.05);
-  }
-</style>
 
 
 ---
