@@ -9,15 +9,15 @@
        padding: 2px 8px;
        font-size: 14px;
        color: white;
-       background-color: #b3243e;
+       background-color: #d3445e;
        border: none;
        border-radius: 4px;
        text-decoration: none;
        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
        transition: background-color 0.3s, transform 0.2s;
      "
-     onmouseover="this.style.backgroundColor='#0056b3'; this.style.transform='scale(1.05)';"
-     onmouseout="this.style.backgroundColor='#007BFF'; this.style.transform='scale(1)';">
+     onmouseover="this.style.backgroundColor='#b3243e'; this.style.transform='scale(1.05)';"
+     onmouseout="this.style.backgroundColor='#d3445e'; this.style.transform='scale(1)';">
     简体中文
   </a>
 </div>
@@ -33,9 +33,14 @@
 
 ## **Usage**
 
-1. **Download `make.sh` from release:**
+1. **Download `make.sh` from [release](https://github.com/Estrella-Explore/gcc_strict-flags/releases):**
 
     > You may clone this repo and try the demos first.
+    
+    You could also download the latest version via `curl`:
+    ```bash
+    curl https://raw.githubusercontent.com/Estrella-Explore/gcc_strict-flags/refs/heads/main/make.sh
+    ```
 
 2. **Installation**
 
@@ -59,7 +64,7 @@
 ## **Requirements**
 
 - **g++:** Ensure `g++` is installed with support for C++14 or later.
-- **Bash:** The script is written for Bash environments (Linux, macOS, WSL, etc.).
+- **Bash:** The script is written for Bash environments (Linux, macOS, WSL, Git Bash, etc.).
 
 ---
 
@@ -87,7 +92,7 @@ Given a file `example.cpp`:
 This repo is licensed under the [GPLv3 License](./LICENCE).  
 
 
-# Star History
+## Star History
 
 <a href="https://star-history.com/#estrella-explore/gcc_strict-flags&Date">
  <picture>

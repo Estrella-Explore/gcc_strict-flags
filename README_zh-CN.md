@@ -1,6 +1,6 @@
 # **gcc_strict-flags**
 
-> 这是一个适用于竞争性编程的启用 **最严格的编译器标志** 单文件编译脚本。
+> 这是一个适用于竞争性编程（如：OI、ACM）领域启用 **最严格的编译参数** 的单文件编译脚本。
 
 <div style="text-align:center;">
   <a href="README.md" 
@@ -9,14 +9,14 @@
        padding: 2px 8px;
        font-size: 14px;
        color: white;
-       background-color: #1d6ea3;
+       background-color: #007BFF;
        border: none;
        border-radius: 4px;
        text-decoration: none;
        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
        transition: background-color 0.3s, transform 0.2s;
      "
-     onmouseover="this.style.backgroundColor='#0056b3'; this.style.transform='scale(1.05)';"
+     onmouseover="this.style.backgroundColor='#008BFF'; this.style.transform='scale(1.05)';"
      onmouseout="this.style.backgroundColor='#007BFF'; this.style.transform='scale(1)';">
     English
   </a>
@@ -26,15 +26,21 @@
 
 ## **功能特点**
 
-- 使用最严格的编译器标志编译 C++ 文件，并附加一些辅助调试标志。
+- 使用最严格的编译参数编译 C++ 文件，并附加一些辅助调试标志。
 - 自动检测测试样例文件（`*.in`），并将输出重定向到 `*.ans`。
 
 ---
 
 ## **使用方法**
 
-1. **从发布页面下载 `make.sh` 文件：**
+1. **从[发布页面](https://github.com/Estrella-Explore/gcc_strict-flags/releases)下载 `make.sh` 文件：**
+
     > 您可以先把该仓库 clone 到本地，并尝试 `./demo` 文件夹下的各种示例文件。
+    
+    你也可以用 `curl` 直接下载最新版的文件：
+    ```bash
+    curl https://raw.githubusercontent.com/Estrella-Explore/gcc_strict-flags/refs/heads/main/make.sh
+    ```
 
 2. **安装方法**
 
@@ -51,14 +57,15 @@
 
 4. **功能：**
    - **编译：** 脚本将编译提供的 C++ 文件并生成可执行文件（`*.out`）。
-   - **自动化测试：** 如果存在 `<filename>.in` 文件，脚本会提示是否将其作为 `stdin` 使用，输出将保存为 `<filename>.ans`。
+   - **自动化测试：** 如果存在 `<filename>.in` 文件，脚本会提示是否将其作为标准输入提供给你的程序，并将输出保存为 `<filename>.ans`。
 
 ---
 
 ## **运行环境要求**
 
-- **g++：** 确保已安装支持 C++14 或更高版本的 `g++`（推荐使用 `g++` 的最新版本，目前为 `g++ 14.2.1`）。
-- **Bash：** 该脚本适用于 Bash 环境（MinGW、WSL、Linux、macOS 等）。
+- **g++：** 确保已安装支持 C++14 或更高版本的 `g++`（推荐使用 `g++` 的最新版本，目前为 `g++ 14.2.1`）。\
+      注：在 Windows 下你可以选择 MinGW 或者 CygWin。
+- **Bash：** 该脚本适用于 Bash 环境（Linux、macOS、WSL、Git Bash 等）。
 
 ---
 
@@ -81,11 +88,11 @@
 
 ---
 
-## **许可证**
+## **许可协议**
 
 该项目基于 [GPLv3 许可证](./LICENCE) 进行授权。
 
-# Star History
+## Star 历史
 
 <a href="https://star-history.com/#estrella-explore/gcc_strict-flags&Date">
  <picture>
