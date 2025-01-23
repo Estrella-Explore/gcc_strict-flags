@@ -6,13 +6,14 @@ on:
       - '*'
 
 jobs:
-  test:
+  shellcheck:
     runs-on: ubuntu-latest
 
     steps:
       - name: FKCCF everyday
         run: |
           echo "Beep boop! shellcheck was triggered..."
+          echo "I would say, FKCCF!"
 
       - name: Clone repo
         uses: actions/checkout@v3
@@ -21,11 +22,10 @@ jobs:
         run: |
           echo "repo was cloned successfully!"
 
-      - name: Install shellcheck
+      - name: shellcheck
         uses: ludeeus/action-shellcheck@00b27aa7cb85167568cb48a3838b75f4265f2bca
 
-      - name: Lint shell scripts
+      - name: Finish
         run: |
-          echo "shellcheck begins..."
-          shellcheck ./**/*.sh
           echo "Beep boop! shellcheck finished!"
+          echo "Beep boop! You are able to request a review now."
