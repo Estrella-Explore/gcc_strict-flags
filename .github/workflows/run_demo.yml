@@ -21,8 +21,8 @@ jobs:
         run: |
           echo "Beep boop! Let's try A plus B!"
 
-          yes "Y" | ./make.sh A_plus_B.cpp
-          # (echo "Y"; echo "Y") | ./make.sh A_plus_B.cpp
+          yes "Y" | ./make.sh ./demo/A_plus_B.cpp
+          # (echo "Y"; echo "Y") | ./make.sh ./demo/A_plus_B.cpp
         shell: bash
 
       - name:
@@ -30,9 +30,9 @@ jobs:
         id:
           check_result
         run: |
-          if [[ $(cat A_plus_B.ans) != "628" ]]; then
+          if [[ $(cat ./demo/A_plus_B.ans) != "628" ]]; then
             echo "Beep boop! We were tricked by CCF!"
-            cat A_plus_B.log
+            cat ./demo/A_plus_B.log
             exit 1
           else
             echo "Beep boop! A+B result is correct!"
