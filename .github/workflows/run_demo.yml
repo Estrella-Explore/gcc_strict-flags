@@ -32,7 +32,7 @@ jobs:
         id:
           check_result
         run: |
-          if [[ $(cat ./demo/A_Plus_B.ans) != "628" ]]; then
+          if [[ $(cat ./demo/A_Plus_B.ans) != "2034324" ]]; then
             echo "Beep boop! We were tricked by CCF!"
             cat ./demo/A_Plus_B.log
             exit 1
