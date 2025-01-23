@@ -35,7 +35,7 @@ tryUsingDefaultTestcase() {
         if [[ "$operation" != [Nn]* ]]; then # Proceed if the user input is not "N" or "n".
             blueOutput "[Info]:${RESET} Using ${filename}.in as the test case."
 
-            ./${filename}.out < "${filename}.in" > "${filename}.ans" # Executes the program with input redirection.
+            "./${filename}.out" < "${filename}.in" > "${filename}.ans" # Executes the program with input redirection.
 
             blueOutput "[Info]:${RESET} Output is shown below and saved as ${filename}.ans.\n"
 
@@ -105,7 +105,7 @@ if [[ -x "${filename}.out" ]]; then
     tryUsingDefaultTestcase
 else
     redOutput "[Error]: Compilation failed.\a"
-    blueOutput "[Info]:${RESET} Check "${filename}.log" for details."
+    blueOutput "[Info]:${RESET} Check '${filename}.log' for details."
 fi
 
 cleanupEmptyFiles
