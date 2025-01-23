@@ -17,7 +17,7 @@
        text-decoration: none;
        ">
     English</a>
-  &nbsp|&nbsp 简体中文
+   |&nbsp 简体中文
 </div>
 
 ---
