@@ -1,9 +1,6 @@
-name: Shellcheck
+name: Shell check
 
 on:
-  push:
-    branches:
-      - main
   pull_request:
     branches:
       - '*'
@@ -13,16 +10,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: FKCCF everyday
+        run: |
+          echo "Beep boop! shellcheck was triggered..."
+
+      - name: Clone repo
         uses: actions/checkout@v3
         run: |
           echo "repo was cloned successfully!"
 
-      - name: Set up shellcheck
+      - name: Install shellcheck
         uses: ludeeus/action-shellcheck@00b27aa7cb85167568cb48a3838b75f4265f2bca
 
       - name: Lint shell scripts
         run: |
           echo "shellcheck begins..."
           shellcheck ./**/*.sh
-          echo "shellcheck finished!"
+          echo "Beep boop! shellcheck finished!"
