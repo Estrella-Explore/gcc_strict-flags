@@ -1,30 +1,24 @@
 # **gcc_strict-flags**
 
-> 这是一个适用于竞争性编程（如：OI、ACM）领域启用 **最严格的编译参数** 的单文件编译脚本。
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/e96d8a94cfce436aa957c8fe416c9e77)](https://app.codacy.com/gh/Estrella-Explore/gcc_strict-flags/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 
-<div style="text-align: center;">
-  <a href="README.md" 
+> [!TIP]
+> 这是一个为竞争性编程领域（如：OI、ACM）设计的启用 **最严格的编译参数** 的单文件编译脚本。 🚀 
+
+<div align="center">
+  <a href="README.md"
      style="
        display: inline-block;
-       padding: 2px 8px;
+       padding: 5px 12px;
        font-size: 14px;
        color: white;
-       background-color: #007BFF;
-       border: none;
+       background-color: #007bff;
        border-radius: 4px;
        text-decoration: none;
-       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-       transition: background-color 0.3s, transform 0.2s;
-     "
-     class="custom-button">
-    English
-  </a>
-  <style>
-    .custom-button:hover {
-      background-color: #008BFF;
-      transform: scale(1.05);
-    }
-  </style>
+       ">
+    English 
+    </a>
+  &nbsp|&nbsp 简体中文
 </div>
 
 ---

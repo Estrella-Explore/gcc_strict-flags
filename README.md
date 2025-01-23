@@ -6,7 +6,7 @@
 > This is a single file compile script which enables the **STRICTEST compiler flags** for competitive programming. 🚀 
 
 <div align="center">
-  English &nbsp|&nbsp
+  English &nbsp|&nbsp 
   <a href="README_zh-CN.md"
      style="
        display: inline-block;
@@ -16,8 +16,8 @@
        background-color: #d3445e;
        border-radius: 4px;
        text-decoration: none;
-     ">
-    简体中文
+       ">
+   简体中文
   </a>
 </div>
 
