@@ -17,8 +17,7 @@
        border-radius: 4px;
        text-decoration: none;
        ">
-   简体中文
-  </a>
+   简体中文</a>
 </div>
 
 ---

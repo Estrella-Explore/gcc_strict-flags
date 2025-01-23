@@ -16,8 +16,7 @@
        border-radius: 4px;
        text-decoration: none;
        ">
-    English
-  </a>
+    English</a>
   &nbsp |&nbsp 简体中文
 </div>
 
