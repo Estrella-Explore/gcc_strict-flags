@@ -16,6 +16,8 @@ jobs:
 
       - name: Clone repo
         uses: actions/checkout@v3
+
+      - name: Show status
         run: |
           echo "repo was cloned successfully!"
 
