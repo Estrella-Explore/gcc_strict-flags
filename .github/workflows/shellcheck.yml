@@ -1,0 +1,28 @@
+name: Shellcheck
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - '*'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        run: |
+          echo "repo was cloned successfully!"
+
+      - name: Set up shellcheck
+        uses: ludeeus/action-shellcheck@v2
+
+      - name: Lint shell scripts
+        run: |
+          echo "shellcheck begins..."
+          shellcheck ./**/*.sh
+          echo "shellcheck finished!"
