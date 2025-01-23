@@ -1,0 +1,48 @@
+name: Check A+B Result
+
+on:
+  push:
+    branches:
+      - '*'
+
+jobs:
+  A_plus_B:
+    runs-on:
+      ubuntu-latest
+
+    steps:
+      - name:
+          Checkout code
+        uses:
+          actions/checkout@v3
+
+      - name:
+          try calculate A+B
+        run: |
+          echo "Beep boop! Let's try A plus B!"
+
+          yes "Y" | ./make.sh A_plus_B.cpp
+          # (echo "Y"; echo "Y") | ./make.sh A_plus_B.cpp
+        shell: bash
+
+      - name:
+          Check A+B result
+        id:
+          check_result
+        run: |
+          if [[ $(cat A_plus_B.ans) != "628" ]]; then
+            echo "Beep boop! We were tricked by CCF!"
+            cat A_plus_B.log
+            exit 1
+          else
+            echo "Beep boop! A+B result is correct!"
+          fi
+        shell: bash
+
+      - name:
+          Collect results
+        if:
+          steps.check_result.outcome == 'success'
+        run:
+          echo "Beep boop! The check passed successfully!"
+          echo "Beep boop! We successfully fk-ed CCF!"
