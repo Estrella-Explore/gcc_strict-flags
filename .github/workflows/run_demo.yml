@@ -23,8 +23,8 @@ jobs:
           echo "All '*.cpp' files:"
           find . | grep .cpp
 
-          yes "Y" | ./make.sh ./demo/A_Plus_B.cpp
-          # (echo "Y"; echo "Y") | ./make.sh ./demo/A_Plus_B.cpp
+          #yes "Y" | ./make.sh ./demo/A_Plus_B.cpp
+          (echo "Y"; echo "Y") | ./make.sh ./demo/A_Plus_B.cpp
         shell: bash
 
       - name:
