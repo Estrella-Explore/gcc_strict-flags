@@ -5,6 +5,7 @@ engines:
 
 ignore:
   - "demo/*.cpp"
+  - "demo/*/*.cpp"
   - ".github/*"
   - "README.md"
   - "README_zh-CN.md"
