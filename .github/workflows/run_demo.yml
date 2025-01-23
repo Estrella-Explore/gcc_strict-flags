@@ -20,6 +20,8 @@ jobs:
           try calculate A+B
         run: |
           echo "Beep boop! Let's try A plus B!"
+          echo "All '*.cpp' files:"
+          find . | grep .cpp
 
           yes "Y" | ./make.sh ./demo/A_plus_B.cpp
           # (echo "Y"; echo "Y") | ./make.sh ./demo/A_plus_B.cpp
