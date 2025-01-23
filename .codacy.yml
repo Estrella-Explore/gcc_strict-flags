@@ -1,0 +1,10 @@
+---
+engines:
+  shellcheck:
+    enabled: true
+
+ignore:
+  - "demo/*.cpp"
+  - ".github/*"
+  - "README.md"
+  - "README_zh-CN.md"
