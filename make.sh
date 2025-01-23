@@ -89,6 +89,7 @@ initCleanup
 # Given that, we should `tee` outputs to fake_tty, and `cat fake_tty` after
 # compilation. 
 # Don't forget to `rm fake_tty` at last.
+if [[ -e fake_tty ]]; then rm fake_tty; fi
 mkfifo fake_tty
 
 # @brief: Compiles `${filename}.cpp` using `g++` with detailed warnings and debugging flags.
@@ -103,8 +104,7 @@ g++ -g -Wall -Wextra -pedantic --std=c++14 -Og \
     -D_GLIBCXX_DEBUG -D_GLIBCXX_DEBUG_PEDANTIC \
     -fdiagnostics-color=always \
     "$1" -o "${filename}.out" 2>&1 \
-    | tee fake_tty & \
-    | sed "s/\x1B\[[0-9;]*[a-zA-Z]//g" > "${filename}.log"
+    | tee fake_tty &
 
 # @brief: Output `fake_tty` after compilation.
 # The origin compile command was `tee /dev/tty` directly, it didn't work on
@@ -112,7 +112,19 @@ g++ -g -Wall -Wextra -pedantic --std=c++14 -Og \
 # We introduced `fake_tty` to resolve it.
 # `wait` is because `tee fake_tty &` is asynchronous.
 # Now it's time to output and clean it up.
-cat fake_tty
+#
+# By the way, I hate the computer of GitHub Actions.
+# My origin code was graceful:
+#
+# ```bash
+# g++ ... 2>&1 \
+# | tee /dev/tty \
+# | sed "..." > "${filename}.log"
+# ```
+#
+cat fake_tty \
+| tee | cat - \
+| sed "s/\x1B\[[0-9;]*[a-zA-Z]//g" > "${filename}.log"
 wait
 rm fake_tty
 
