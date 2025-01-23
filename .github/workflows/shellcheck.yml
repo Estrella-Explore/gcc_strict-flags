@@ -19,7 +19,7 @@ jobs:
           echo "repo was cloned successfully!"
 
       - name: Set up shellcheck
-        uses: ludeeus/action-shellcheck@v2
+        uses: ludeeus/action-shellcheck@00b27aa7cb85167568cb48a3838b75f4265f2bca
 
       - name: Lint shell scripts
         run: |
