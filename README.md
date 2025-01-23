@@ -2,11 +2,11 @@
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/e96d8a94cfce436aa957c8fe416c9e77)](https://app.codacy.com/gh/Estrella-Explore/gcc_strict-flags/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 
-> [!Overview]
+> [!TIP]
 > This is a single file compile script which enables the **STRICTEST compiler flags** for competitive programming. 🚀 
 
 <div align="center">
-  English 
+  English &nbsp | &nbsp 
   <a href="README_zh-CN.md"
      style="
        display: inline-block;
