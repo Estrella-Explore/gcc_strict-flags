@@ -1,5 +1,7 @@
 # **gcc_strict-flags**
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/0fd208d7ad2a4af695edbaa84a5ff396)](https://app.codacy.com/gh/Estrella-Explore/gcc_strict-flags?utm_source=github.com&utm_medium=referral&utm_content=Estrella-Explore/gcc_strict-flags&utm_campaign=Badge_Grade)
+
 > This is a single file compile script which enables the **STRICTEST compiler flags** for competitive programming.
 
 <div style="text-align:center;">
