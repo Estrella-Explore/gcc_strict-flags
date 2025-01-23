@@ -1,25 +1,23 @@
 # **gcc_strict-flags**
 
-> This is a single file compile script which enables the **STRICTEST compiler flags** for competitive programming.
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/e96d8a94cfce436aa957c8fe416c9e77)](https://app.codacy.com/gh/Estrella-Explore/gcc_strict-flags/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 
-<div style="text-align:center;">
-  <a href="README_zh-CN.md" 
+> [!TIP]
+> This is a single file compile script which enables the **STRICTEST compiler flags** for competitive programming. 🚀 
+
+<div align="center">
+  English &nbsp|&nbsp 
+  <a href="README_zh-CN.md"
      style="
        display: inline-block;
-       padding: 2px 8px;
+       padding: 5px 12px;
        font-size: 14px;
        color: white;
-       background-color: #b3243e;
-       border: none;
+       background-color: #d3445e;
        border-radius: 4px;
        text-decoration: none;
-       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-       transition: background-color 0.3s, transform 0.2s;
-     "
-     onmouseover="this.style.backgroundColor='#0056b3'; this.style.transform='scale(1.05)';"
-     onmouseout="this.style.backgroundColor='#007BFF'; this.style.transform='scale(1)';">
-    简体中文
-  </a>
+       ">
+   简体中文</a>
 </div>
 
 ---
@@ -33,9 +31,14 @@
 
 ## **Usage**
 
-1. **Download `make.sh` from release:**
+1. **Download `make.sh` from [release](https://github.com/Estrella-Explore/gcc_strict-flags/releases):**
 
     > You may clone this repo and try the demos first.
+    
+    You could also download the latest version via `curl`:
+    ```bash
+    curl -O https://raw.githubusercontent.com/Estrella-Explore/gcc_strict-flags/main/make.sh
+    ```
 
 2. **Installation**
 
@@ -59,7 +62,7 @@
 ## **Requirements**
 
 - **g++:** Ensure `g++` is installed with support for C++14 or later.
-- **Bash:** The script is written for Bash environments (Linux, macOS, WSL, etc.).
+- **Bash:** The script is written for Bash environments (Linux, macOS, WSL, Git Bash, etc.).
 
 ---
 
@@ -87,7 +90,7 @@ Given a file `example.cpp`:
 This repo is licensed under the [GPLv3 License](./LICENCE).  
 
 
-# Star History
+## Star History
 
 <a href="https://star-history.com/#estrella-explore/gcc_strict-flags&Date">
  <picture>

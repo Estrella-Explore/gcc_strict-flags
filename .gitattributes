@@ -1,3 +1,12 @@
 *.sh        text eol=lf
 *.md        text eol=lf
 *.cpp       text eol=lf
+
+# Catches all text files
+*           text eol=lf
+
+# Exceptions for images
+*.jpg       binary
+*.png       binary
+*.svg       binary
+*.gif       binary
