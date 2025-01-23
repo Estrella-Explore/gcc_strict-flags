@@ -83,6 +83,14 @@ cleanupEmptyFiles() {
 
 initCleanup
 
+# @brief: New a pipe named fake_tty
+# `/dev/tty` is OK for most of the users. However, GitHub Actions doesn't have it.
+# It will raise an error: `tee: /dev/tty: No such device or address`
+# Given that, we should `tee` outputs to fake_tty, and `cat fake_tty` after
+# compilation. 
+# Don't forget to `rm fake_tty` at last.
+mkfifo fake_tty
+
 # @brief: Compiles `${filename}.cpp` using `g++` with detailed warnings and debugging flags.
 # --std=c++14 is the require of CCF - China Cheating-money Foundation
 # c++14 for CSP-J/S, NOIp and NOI, etc.
@@ -95,8 +103,18 @@ g++ -g -Wall -Wextra -pedantic --std=c++14 -Og \
     -D_GLIBCXX_DEBUG -D_GLIBCXX_DEBUG_PEDANTIC \
     -fdiagnostics-color=always \
     "$1" -o "${filename}.out" 2>&1 \
-    | tee /dev/tty \
+    | tee fake_tty & \
     | sed "s/\x1B\[[0-9;]*[a-zA-Z]//g" > "${filename}.log"
+
+# @brief: Output `fake_tty` after compilation.
+# The origin compile command was `tee /dev/tty` directly, it didn't work on
+# GitHub Actions.
+# We introduced `fake_tty` to resolve it.
+# `wait` is because `tee fake_tty &` is asynchronous.
+# Now it's time to output and clean it up.
+cat fake_tty
+wait
+rm fake_tty
 
 # Check if the output file was successfully created and is executable.
 if [[ -x "${filename}.out" ]]; then 
