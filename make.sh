@@ -114,15 +114,7 @@ g++ -g -Wall -Wextra -pedantic --std=c++14 -Og \
 # `wait` is because `tee fake_tty &` is asynchronous.
 # Now it's time to output and clean it up.
 #
-# By the way, I hate the computer of GitHub Actions.
-# My origin code was graceful:
-#
-# ```bash
-# g++ ... 2>&1 \
-# | tee /dev/tty \
-# | sed "..." > "${filename}.log"
-# ```
-#
+# By the way, I hate the computer of GitHub Actions. It doesn't have `/dev/tty`.
 ./fake_tty >(sed "s/\x1B\[[0-9;]*[a-zA-Z]//g" > "${filename}.log")
 
 wait
