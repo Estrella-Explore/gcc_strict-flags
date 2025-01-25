@@ -23,6 +23,7 @@ jobs:
 
           echo "All '*.cpp' files:"
           find . -name "*.cpp"
+          chmod +x ./make.sh
 
           (echo "Y"; echo "Y") | ./make.sh ./demo/A_Plus_B.cpp
         shell: bash
