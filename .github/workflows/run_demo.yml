@@ -20,10 +20,10 @@ jobs:
           try calculate A+B
         run: |
           echo "Beep boop! Let's try A plus B!"
-          echo "All '*.cpp' files:"
-          find . | grep .cpp
 
-          #yes "Y" | ./make.sh ./demo/A_Plus_B.cpp
+          echo "All '*.cpp' files:"
+          find . -name "*.cpp"
+
           (echo "Y"; echo "Y") | ./make.sh ./demo/A_Plus_B.cpp
         shell: bash
 
@@ -48,3 +48,4 @@ jobs:
         run:
           echo "Beep boop! The check passed successfully!"
           echo "Beep boop! We successfully fk-ed CCF!"
+        shell: bash
