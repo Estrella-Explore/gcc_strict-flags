@@ -91,6 +91,7 @@ initCleanup
 # Don't forget to `rm fake_tty` at last.
 if [[ -e fake_tty ]]; then rm fake_tty; fi
 mkfifo fake_tty
+chmod +x fake_tty
 
 # @brief: Compiles `${filename}.cpp` using `g++` with detailed warnings and debugging flags.
 # --std=c++14 is the require of CCF - China Cheating-money Foundation
