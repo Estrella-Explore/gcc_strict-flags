@@ -123,8 +123,8 @@ g++ -g -Wall -Wextra -pedantic --std=c++14 -Og \
 # ```
 #
 cat fake_tty \
-| tee | cat - \
-| sed "s/\x1B\[[0-9;]*[a-zA-Z]//g" > "${filename}.log"
+    | tee > (sed "s/\x1B\[[0-9;]*[a-zA-Z]//g" > "${filename}.log")
+
 wait
 rm fake_tty
 
