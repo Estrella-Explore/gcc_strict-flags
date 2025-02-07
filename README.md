@@ -1,5 +1,6 @@
 # **gcc_strict-flags**
 
+[![fkccf Badge](https://img.shields.io/badge/fkccf-everyday-brightgreen)](https://www.luogu.com/article/c7bicfv0)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/e96d8a94cfce436aa957c8fe416c9e77)](https://app.codacy.com/gh/Estrella-Explore/gcc_strict-flags/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 [![Check A+B Result](https://github.com/Estrella-Explore/gcc_strict-flags/actions/workflows/run_demo.yml/badge.svg)](https://github.com/Estrella-Explore/gcc_strict-flags/actions/workflows/run_demo.yml)
 [![Shell check](https://github.com/Estrella-Explore/gcc_strict-flags/actions/workflows/shellcheck.yml/badge.svg)](https://github.com/Estrella-Explore/gcc_strict-flags/actions/workflows/shellcheck.yml)
