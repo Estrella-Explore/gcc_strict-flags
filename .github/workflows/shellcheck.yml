@@ -16,14 +16,14 @@ jobs:
           echo "I would say, FKCCF!"
 
       - name: Clone repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v7
 
       - name: Show status
         run: |
           echo "repo was cloned successfully!"
 
       - name: shellcheck
-        uses: ludeeus/action-shellcheck@00b27aa7cb85167568cb48a3838b75f4265f2bca
+        uses: ludeeus/action-shellcheck@master
 
       - name: Finish
         run: |
