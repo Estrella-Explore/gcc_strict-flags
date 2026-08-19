@@ -24,7 +24,6 @@ redOutput() {
 
 # @brief: Reads the default test case as `stdin` and redirects `stdout` to `${filename}.ans`.
 # If `${filename}.in` exists, prompts the user to use it as the test case.
-# The program output is saved to `${filename}.ans`.
 tryUsingDefaultTestcase() {
     if [[ -r ${filename}.in ]]; then # Checks if `${filename}.in` exists and is readable.
         echo ""
@@ -35,7 +34,16 @@ tryUsingDefaultTestcase() {
         if [[ "$operation" != [Nn]* ]]; then # Proceed if the user input is not "N" or "n".
             blueOutput "[Info]:${RESET} Using ${filename}.in as the test case."
 
-            "./${filename}.out" < "${filename}.in" > "${filename}.ans" # Executes the program with input redirection.
+            # Run the program once, splitting the output cleanly:
+            #   - stdout -> inner `tee .ans`: saved to .ans (for diff / CI) and
+            #     forwarded to the outer pipe;
+            #   - the group's stderr (`2>&1`) is merged with the forwarded
+            #     stdout into ONE real-time stream;
+            #   - outer `tee -a .log`: shown live on the terminal and appended
+            #     to .log, so the log records stdout + stderr exactly as shown.
+            # No process substitution is used (avoids the bash `2> >(tee ...)`
+            # bug that leaks stderr into the stdout target).
+            { "./${filename}.out" < "${filename}.in" | tee "${filename}.ans"; } 2>&1 | tee -a "${filename}.log"
 
             blueOutput "[Info]:${RESET} Output is shown below and saved as ${filename}.ans.\n"
 
