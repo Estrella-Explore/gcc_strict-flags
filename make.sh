@@ -24,7 +24,6 @@ redOutput() {
 
 # @brief: Reads the default test case as `stdin` and redirects `stdout` to `${filename}.ans`.
 # If `${filename}.in` exists, prompts the user to use it as the test case.
-# The program output is saved to `${filename}.ans`.
 tryUsingDefaultTestcase() {
     if [[ -r ${filename}.in ]]; then # Checks if `${filename}.in` exists and is readable.
         echo ""
@@ -35,7 +34,23 @@ tryUsingDefaultTestcase() {
         if [[ "$operation" != [Nn]* ]]; then # Proceed if the user input is not "N" or "n".
             blueOutput "[Info]:${RESET} Using ${filename}.in as the test case."
 
-            "./${filename}.out" < "${filename}.in" > "${filename}.ans" # Executes the program with input redirection.
+            # Run the program once, splitting the output cleanly:
+            #   - stdout -> inner `tee .ans`: saved to .ans (for diff / CI) and
+            #     forwarded to the outer pipe;
+            #   - the group's stderr (`2>&1`) is merged with the forwarded
+            #     stdout into ONE real-time stream;
+            #   - outer `tee`: shown live on the terminal (colored), and via a
+            #     process substitution appended to .log with ANSI codes
+            #     stripped (same as the compile log).
+            # `ASAN_OPTIONS=color=always UBSAN_OPTIONS=color=always` force the
+            # sanitizers to keep colors even though stderr is a pipe here;
+            # otherwise their default `color=auto` (isatty check) turns the
+            # runtime errors into plain text.
+            # Note: this pipes stderr through `tee` instead of the fd-redirect
+            # form `2> >(tee ...)`, which has a bash bug that leaks stderr into
+            # the stdout target.
+            { ASAN_OPTIONS=color=always UBSAN_OPTIONS=color=always "./${filename}.out" < "${filename}.in" | tee "${filename}.ans"; } 2>&1 \
+                | tee >(sed "s/\x1B\[[0-9;]*[a-zA-Z]//g" >> "${filename}.log")
 
             blueOutput "[Info]:${RESET} Output is shown below and saved as ${filename}.ans.\n"
 
@@ -103,6 +118,9 @@ set -o pipefail
 g++ -g -Wall -Wextra -pedantic --std=c++14 -Og \
     -Wshadow -Wformat=2 -Wfloat-equal -Wconversion -Wlogical-op -Wshift-overflow=2 \
     -Wduplicated-cond -Wcast-qual -Wcast-align -Wnoexcept -Winline -Wdouble-promotion \
+    -Wsign-conversion -Wduplicated-branches -Wvla -Wnull-dereference \
+    -Warray-bounds=2 -Wstringop-overflow \
+    -Wundef -Wpointer-arith -Wcast-function-type -Wmismatched-new-delete -Wformat-signedness\
     -fsanitize=undefined -fsanitize=address -fanalyzer \
     -D_GLIBCXX_DEBUG -D_GLIBCXX_DEBUG_PEDANTIC \
     -fdiagnostics-color=always \
