@@ -2,3 +2,11 @@
 engines:
   shellcheck:
     enabled: true
+
+exclude_pathes:
+  - demo/**
+  - .github/**
+
+exclude_files:
+  - README.md
+  - README_zh-CN.md
